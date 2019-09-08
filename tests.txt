@@ -1,0 +1,39 @@
+puts "Node 1-3 tests"
+node1 = LinkedListNode.new(37)
+node2 = LinkedListNode.new(99, node1)
+node3 = LinkedListNode.new(12, node2)
+
+puts node3.inspect
+print_values(node3)
+
+puts "-------"
+
+revlist1 = reverse_list(node3)
+print_values(revlist1)
+
+puts "Stack with Node 1-3 tests"
+stack = Stack.new
+stack.push(37)
+stack.push(99)
+stack.push(12)
+
+puts "Full stack"
+puts stack.inspect
+print_values(stack.data)
+
+puts "Pop test"
+puts stack.pop
+puts stack.inspect
+print_values(stack.data)
+
+print_values(node3)
+
+puts "-------"
+
+revlist2 = reverse_list(stack)
+
+print_values(revlist2)
+
+12 --> 99 --> 37 --> nil
+------
+37 --> 99 --> 12 --> nil
