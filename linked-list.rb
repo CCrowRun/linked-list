@@ -36,11 +36,31 @@ class Stack
     end
 end
 
-def reverse_list(list)
-    rev_list = Stack.new
-    while list
-      rev_list.push(list.value)
-      list = list.next_node
+def reverse_list(list, previous = nil)
+  if list.next_node
+    original_next_node = list.next_node
+    list.next_node = previous
+    previous = list
+    reverse_list(original_next_node, previous)
+  else
+    list.next_node = previous
+    @head = list
+    return @head
+  end
+end
+
+def is_infinite?(list, tortoise = list, hare = list)
+  2.times{
+    if hare
+      hare = hare.next_node 
+    else
+      return false
     end
-    return rev_list.data
+  }
+  tortoise = tortoise.next_node
+  if hare == tortoise 
+    return true
+  else 
+    is_infinite?(list, tortoise, hare)
+  end
 end
